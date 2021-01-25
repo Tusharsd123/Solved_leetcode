@@ -1,22 +1,40 @@
 class Solution {
 public:
-    int dp_util(vector<int>&stones,int i,int given_sum,int total_sum,vector<vector<int>> &dp)
-    {
-       if(i==0)
-           return dp[i][given_sum] =  abs((total_sum-given_sum)-given_sum);
-       else if(dp[i][given_sum]!=-1) 
-           return dp[i][given_sum];
-       else 
-           return dp[i][given_sum] = min(dp_util(stones,i-1,given_sum+stones[i-1],total_sum,dp),dp_util(stones,i-1,given_sum,total_sum,dp));
-    }
     int lastStoneWeightII(vector<int>& stones) {
-        int len = stones.size();
-        int sum = 0;
-        for(int i = 0;i<len;i++)
-        {
-            sum += stones[i];
+        int n=stones.size();
+        int sum=0;
+        for(int i=0;i<n;i++)
+            sum+=stones[i];
+       int s=sum/2;
+        int ans=INT_MAX;
+        bool t[n+1][s+1];
+        vector<int> v;
+        
+        for(int i=0;i<n+1;i++)
+            t[i][0]=true;
+        for(int i=1;i<s+1;i++)
+            t[0][i]=false;
+        
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<s+1;j++){
+                if(stones[i-1]<=j){
+                    t[i][j]=t[i-1][j-stones[i-1]] || t[i-1][j];
+                }
+                else
+                    t[i][j]=t[i-1][j];
+            }
         }
-        vector<vector<int>> dp(len+1,vector<int>(sum+1,-1));
-        return dp_util(stones,len,0,sum,dp);
+        
+        
+        for(int i=1;i<s+1;i++)
+        {
+         if(t[n][i] == true)
+           v.push_back(i);
+        }
+        
+        for(int i : v){
+            ans=min(ans, sum-(2*i));
+        }
+        return ans;
     }
 };
