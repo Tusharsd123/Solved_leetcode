@@ -1,2 +1,2 @@
-# Solved_leetcode
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub).
+# My_leetcode_Solutions
+Currently I have solved more than 300+ questions on leetcode.
