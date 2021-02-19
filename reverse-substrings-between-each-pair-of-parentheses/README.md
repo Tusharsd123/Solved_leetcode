@@ -1,3 +1,4 @@
+[Discussion Post (created on 19/1/2021 at 12:32)](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/discuss/1072468/Stack-%2B-Queue-VERY-EASY-SOLUTION)  
 <h2>1190. Reverse Substrings Between Each Pair of Parentheses</h2><h3>Medium</h3><hr><div><p>You are given a string <code>s</code> that consists of lower case English letters and brackets.&nbsp;</p>
 
 <p>Reverse the strings&nbsp;in each&nbsp;pair of matching parentheses, starting&nbsp;from the innermost one.</p>
