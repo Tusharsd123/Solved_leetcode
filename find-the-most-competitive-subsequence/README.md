@@ -1,3 +1,4 @@
+[Discussion Post (created on 30/2/2021 at 19:3)](https://leetcode.com/problems/find-the-most-competitive-subsequence/submissions/)  
 <h2>1673. Find the Most Competitive Subsequence</h2><h3>Medium</h3><hr><div><p>Given an integer array <code>nums</code> and a positive integer <code>k</code>, return <em>the most<strong> competitive</strong> subsequence of </em><code>nums</code> <em>of size </em><code>k</code>.</p>
 
 <p>An array's subsequence is a resulting sequence obtained by erasing some (possibly zero) elements from the array.</p>
