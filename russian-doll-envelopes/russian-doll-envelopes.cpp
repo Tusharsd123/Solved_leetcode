@@ -1,18 +1,19 @@
 class Solution {
 public:
-    int maxEnvelopes(vector<vector<int>>& a) {
-        if(a.empty())
+    int maxEnvelopes(vector<vector<int>>& arr) {
+        if(arr.empty())
             return 0;
-        sort(a.begin(),a.end());
-        vector<int> dp(a.size(),1);
-        for(int i = 0;i<a.size();i++)
+       sort(arr.begin(), arr.end(), [](vector<int> &a,vector<int> &b){
+            return a[0] < b[0] || (a[0] == b[0] && a[1] > b[1]);});
+        vector<int> dp;
+        for (auto e : arr)
         {
-            for(int j = 0;j<i;j++)
-            {
-                if(a[j][1]<a[i][1] && a[j][0] < a[i][0])
-                      dp[i] = max(dp[i],dp[j]+1);
-            }
+            auto iter = lower_bound(dp.begin(), dp.end(), e[1]);
+            if (iter == dp.end())
+                dp.push_back(e[1]);
+            else if (e[1] < *iter)
+                *iter = e[1];
         }
-        return *max_element(dp.begin(),dp.end());
+        return dp.size();
     }
 };
