@@ -26,7 +26,7 @@ public:
     
     
     int longestSubsequence(string s, int k) {
-        int n = s.size();
+        int n = s.length();
         if(n==1)
         {
             if(k>=1) return 1;
