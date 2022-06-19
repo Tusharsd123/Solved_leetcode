@@ -16,6 +16,8 @@ public:
             v[i] += cookies[start];
             backtrack(start+1,v,cookies,k);
             v[i] -= cookies[start];
+            if(v[i]==0)
+                break;
         }
     }
     
