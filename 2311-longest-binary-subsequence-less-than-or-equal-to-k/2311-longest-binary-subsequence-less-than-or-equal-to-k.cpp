@@ -1,43 +1,41 @@
 
 class Solution {
 public:
-   int dp[1001][1001];
-int solve(int i,int j,int curr,int k,string &s)
-{
-if(i<=0)return 0;
-if(curr>k)return 0;
-if(dp[i][j]!=-1)return dp[i][j];
-
-    //If curr char is '0' then we must include this  to increase the  length of subsequence
-     if(s[i-1]=='0')
+    int dp[1001][1001];
+    
+    int f (int i,int j,int curr,string &s,int k)
     {
-        return dp[i][j]=1+solve(i-1,j+1,curr,k,s);
-    }
-    
-	//If curr char is '1 then we can include it or exclude it if and only if our curr sum<=k 
-    else if(s[i-1]=='1' && curr+pow(2,j)<=k)
-    {
-        return dp[i][j]=max(1+solve(i-1,j+1,curr+pow(2,j),k,s),solve(i-1,j,curr,k,s));
-    }
-    
-    
-    else
-        return dp[i][j]=solve(i-1,j,curr,k,s);
-}
-int longestSubsequence(string s, int k) {
-    int n=s.size();
-    
-    if(n==1)
-    {
-        if(k>=1)return 1;
+        if(i<=0)
+            return 0;
+        if(curr>k)
+            return 0;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
         
-        return 0;
+        if(s[i-1]=='0')
+        {
+            return dp[i][j] = 1 + f(i-1,j+1,curr,s,k);
+        }
+        else if(s[i-1]=='1' && curr+pow(2,j)<=k)
+        {
+            return dp[i][j] = max(1+f(i-1,j+1,curr+pow(2,j),s,k),f(i-1,j,curr,s,k));
+        }
+        else
+            return dp[i][j] = f(i-1,j,curr,s,k);
     }
-    memset(dp,-1,sizeof(dp));
     
     
-    return solve(n,0,0,k,s);
-}
+    int longestSubsequence(string s, int k) {
+        int n = s.size();
+        if(n==1)
+        {
+            if(k>=1) return 1;
+            else
+                return 0;
+        }
+        memset(dp,-1,sizeof(dp));
+        return f(n,0,0,s,k);
+    }
 };
 
 
